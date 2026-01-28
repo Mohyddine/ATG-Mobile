@@ -1,0 +1,10 @@
+package com.codewithmehyo.androidtestatgmobile.features.home
+
+data class MediaItemUI(
+    val id: Int,
+    val title: String,
+    val imagePlaceHolder: Int,
+    val imageUrl: String? = null,
+    val videoUrl: String,
+    val adUrl: String,
+)
