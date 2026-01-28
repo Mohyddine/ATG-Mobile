@@ -1,4 +1,4 @@
-package com.codewithmehyo.androidtestatgmobile.features.home
+package com.codewithmehyo.androidtestatgmobile.features.home.model
 
 data class MediaItemUI(
     val id: Int,

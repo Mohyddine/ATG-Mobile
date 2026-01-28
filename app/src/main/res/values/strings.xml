@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Mehyoflix</string>
+    <string name="subscription_switch_label">Are you subscribed?</string>
+    <string name="home_label">Home</string>
+    <string name="vertical_images_label">Vertical Images</string>
+    <string name="horizontal_images_label">Horizontal Images</string>
+    <string name="play_label">Play</string>
+    <string name="pause_label">Pause</string>
+    <string name="forward_10_label">Forward 10</string>
+    <string name="replay_10_label">Replay 10</string>
+    <string name="play_pause_label">play/pause</string>
 </resources>

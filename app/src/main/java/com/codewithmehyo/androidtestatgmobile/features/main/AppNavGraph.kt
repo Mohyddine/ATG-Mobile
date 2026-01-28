@@ -8,7 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.codewithmehyo.androidtestatgmobile.features.home.HomeScreen
 import com.codewithmehyo.androidtestatgmobile.features.home.HomeViewModel
+import com.codewithmehyo.androidtestatgmobile.features.player.PlayerScreen
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -32,21 +34,21 @@ fun AppNavGraph(
     ) {
         // Define the composable for the Home destination.
         composable<AppDestination.Home> {
-            //HomeScreen(
-            //    onItemClick = { mediaUrl, adTagUrl ->
-            //        // Navigate to the Player screen when a media item is clicked,
-            //        // passing the media and ad URLs.
-            //        navController.navigate(AppDestination.Player(mediaUrl, adTagUrl))
-            //    },
-            //    onSubscriptionClick = {
-            //        // Toggle the subscription status when the subscription card is clicked.
-            //        viewModel.toggleSubscription()
-            //    },
-            //    isSubscribed = state.isSubscribed,
-            //    topItems = state.topItems,
-            //    verticalItems = state.verticalItems,
-            //    horizontalItems = state.horizontalItems,
-            //)
+            HomeScreen(
+                onItemClick = { mediaUrl, adTagUrl ->
+                    // Navigate to the Player screen when a media item is clicked,
+                    // passing the media and ad URLs.
+                    navController.navigate(AppDestination.Player(mediaUrl, adTagUrl))
+                },
+                onSubscriptionClick = {
+                    // Toggle the subscription status when the subscription card is clicked.
+                    viewModel.toggleSubscription()
+                },
+                isSubscribed = state.isSubscribed,
+                topItems = state.topItems,
+                verticalItems = state.verticalItems,
+                horizontalItems = state.horizontalItems,
+            )
         }
 
         // Define the composable for the Player destination.
@@ -55,11 +57,11 @@ fun AppNavGraph(
             val destination = backStackEntry.toRoute<AppDestination.Player>()
 
             // Display the PlayerScreen with the provided arguments.
-            //PlayerScreen(
-            //    mediaUrl = destination.mediaUrl,
-            //    adTagUrl = destination.adTagUrl,
-            //    isSubscribed = state.isSubscribed,
-            //)
+            PlayerScreen(
+                mediaUrl = destination.mediaUrl,
+                adTagUrl = destination.adTagUrl,
+                isSubscribed = state.isSubscribed,
+            )
         }
     }
 }

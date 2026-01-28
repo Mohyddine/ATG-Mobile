@@ -2,6 +2,8 @@ package com.codewithmehyo.androidtestatgmobile.features.home
 
 import androidx.lifecycle.ViewModel
 import com.codewithmehyo.androidtestatgmobile.R
+import com.codewithmehyo.androidtestatgmobile.features.home.model.HomeUiState
+import com.codewithmehyo.androidtestatgmobile.features.home.model.MediaItemUI
 import com.codewithmehyo.androidtestatgmobile.manager.SubscriptionManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
