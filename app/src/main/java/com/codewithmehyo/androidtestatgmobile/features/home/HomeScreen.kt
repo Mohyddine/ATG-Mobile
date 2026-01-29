@@ -1,7 +1,5 @@
 package com.codewithmehyo.androidtestatgmobile.features.home
 
-
-//import com.codewithmehyo.androidtestatgmobile.ui.components.TopCarousel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -66,11 +64,6 @@ fun HomeScreen(
             onSubscriptionClick = onSubscriptionClick,
             isSubscribed = isSubscribed
         )
-        //Spacer(Modifier.height(32.dp))
-        //TopCarousel(
-        //    onMediaClick = onItemClick,
-        //    items = topItems
-        //)
         Spacer(Modifier.height(32.dp))
         Text(
             modifier = Modifier.padding(start = 16.dp),

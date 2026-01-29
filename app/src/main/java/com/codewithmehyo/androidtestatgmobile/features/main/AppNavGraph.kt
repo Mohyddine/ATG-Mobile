@@ -7,7 +7,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
 import com.codewithmehyo.androidtestatgmobile.features.home.HomeScreen
 import com.codewithmehyo.androidtestatgmobile.features.home.HomeViewModel
 import com.codewithmehyo.androidtestatgmobile.features.player.PlayerScreen
@@ -39,7 +38,6 @@ fun AppNavGraph(
         composable<AppDestination.Home> {
             HomeScreen(
                 onItemClick = {
-
                     navController.navigate(AppDestination.Player)
                 },
                 onSubscriptionClick = {
@@ -54,11 +52,7 @@ fun AppNavGraph(
         }
 
         // Define the composable for the Player destination.
-        composable<AppDestination.Player> { backStackEntry ->
-            // Extract the arguments from the navigation entry.
-            val destination = backStackEntry.toRoute<AppDestination.Player>()
-
-            // Display the PlayerScreen with the provided arguments.
+        composable<AppDestination.Player> {
             PlayerScreen(
                 isSubscribed = state.isSubscribed,
                 onNavigateBack = {
@@ -66,7 +60,7 @@ fun AppNavGraph(
                 }
             )
         }
-
+        // Define the composable for the Profile destination.
         composable<AppDestination.Profile> {
             ProfileScreen(
                 isSubscribed = state.isSubscribed,

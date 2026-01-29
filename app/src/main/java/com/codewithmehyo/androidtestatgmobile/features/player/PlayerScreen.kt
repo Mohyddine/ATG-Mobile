@@ -5,11 +5,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.SettingsRemote
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,6 +23,7 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.PlayerView
 import com.codewithmehyo.androidtestatgmobile.ui.components.PlayerControls
 import com.codewithmehyo.androidtestatgmobile.ui.theme.AndroidTestATGMobileTheme
+import kotlinx.coroutines.delay
 import org.koin.compose.viewmodel.koinViewModel
 
 /**
@@ -36,6 +42,7 @@ fun PlayerScreen(
     onNavigateBack: () -> Unit = {},
     viewModel: PlayerViewModel = koinViewModel()
 ) {
+    var isControlVisible by remember { mutableStateOf(true) }
     val exoPlayer = viewModel.exoPlayer
     LaunchedEffect(Unit) {
         viewModel.prepareIfNeeded()
@@ -44,6 +51,13 @@ fun PlayerScreen(
         onDispose {
             // Detach surface on recomposition
             exoPlayer.clearVideoSurface()
+        }
+    }
+    // Auto hide controls
+    LaunchedEffect(isControlVisible) {
+        if (isControlVisible) {
+            delay(15000L)
+            isControlVisible = false
         }
     }
     // A box to hold the player view and controls.
@@ -68,7 +82,19 @@ fun PlayerScreen(
             }
         )
         // The player controls.
-        PlayerControls(modifier = Modifier.fillMaxSize())
+        if (isControlVisible) {
+            PlayerControls(modifier = Modifier.fillMaxSize())
+        } else {
+            IconButton(
+                modifier = Modifier.align(Alignment.BottomEnd),
+                onClick = { isControlVisible = true }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.SettingsRemote,
+                    contentDescription = "ArrowBack"
+                )
+            }
+        }
     }
 }
 

@@ -17,8 +17,6 @@ import com.codewithmehyo.androidtestatgmobile.R
 fun ProfileScreen(
     modifier: Modifier = Modifier,
     isSubscribed: Boolean = false,
-    onProUserClick: () -> Unit = {},
-    onLogoutClick: () -> Unit = {},
     onExitAppClick: () -> Unit = {},
 ) {
     Box(
