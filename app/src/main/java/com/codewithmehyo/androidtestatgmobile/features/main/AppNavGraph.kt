@@ -4,13 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.codewithmehyo.androidtestatgmobile.features.home.HomeScreen
 import com.codewithmehyo.androidtestatgmobile.features.home.HomeViewModel
 import com.codewithmehyo.androidtestatgmobile.features.player.PlayerScreen
+import com.codewithmehyo.androidtestatgmobile.features.profile.ProfileScreen
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -18,9 +19,11 @@ import org.koin.androidx.compose.koinViewModel
  */
 @Composable
 fun AppNavGraph(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    startDestination: AppDestination,
+    navController: NavHostController,
+    onExitAppClick: () -> Unit = {}
 ) {
-    val navController = rememberNavController()
     // Get the HomeViewModel instance using koin.
     val viewModel = koinViewModel<HomeViewModel>()
     // Collect the UI state from the HomeViewModel as a Compose state.
@@ -30,15 +33,14 @@ fun AppNavGraph(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = AppDestination.Home
+        startDestination = startDestination
     ) {
         // Define the composable for the Home destination.
         composable<AppDestination.Home> {
             HomeScreen(
-                onItemClick = { mediaUrl, adTagUrl ->
-                    // Navigate to the Player screen when a media item is clicked,
-                    // passing the media and ad URLs.
-                    navController.navigate(AppDestination.Player(mediaUrl, adTagUrl))
+                onItemClick = {
+
+                    navController.navigate(AppDestination.Player)
                 },
                 onSubscriptionClick = {
                     // Toggle the subscription status when the subscription card is clicked.
@@ -58,9 +60,17 @@ fun AppNavGraph(
 
             // Display the PlayerScreen with the provided arguments.
             PlayerScreen(
-                mediaUrl = destination.mediaUrl,
-                adTagUrl = destination.adTagUrl,
                 isSubscribed = state.isSubscribed,
+                onNavigateBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+
+        composable<AppDestination.Profile> {
+            ProfileScreen(
+                isSubscribed = state.isSubscribed,
+                onExitAppClick = onExitAppClick
             )
         }
     }

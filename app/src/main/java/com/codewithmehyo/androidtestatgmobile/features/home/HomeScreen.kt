@@ -39,7 +39,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     isSubscribed: Boolean,
     onSubscriptionClick: () -> Unit = {},
-    onItemClick: (mediaUrl: String, adTagUrl: String) -> Unit = { _, _ -> },
+    onItemClick: () -> Unit = {},
     topItems: List<MediaItemUI> = listOf(),
     verticalItems: List<MediaItemUI> = listOf(),
     horizontalItems: List<MediaItemUI> = listOf()

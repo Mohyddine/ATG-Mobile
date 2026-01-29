@@ -52,8 +52,6 @@ class HomeViewModel(
                 title = "Media $it",
                 imagePlaceHolder = R.drawable.img_vertical,
                 imageUrl = "https://picsum.photos/300/500?random=${it + 100}",
-                videoUrl = "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
-                adUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpost&ciu_szs=300x250&gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&vid=short_onecue&correlator="
             )
         }
     }
@@ -68,8 +66,6 @@ class HomeViewModel(
                 title = "Media $it",
                 imagePlaceHolder = R.drawable.img_horizontal,
                 imageUrl = "https://picsum.photos/500/300?random=$${it + 200}",
-                videoUrl = "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
-                adUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpost&ciu_szs=300x250&gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&vid=short_onecue&correlator="
             )
         }
     }
@@ -84,8 +80,6 @@ class HomeViewModel(
                 title = "Media $it",
                 imagePlaceHolder = R.drawable.img_horizontal,
                 imageUrl = "https://picsum.photos/720/500?random=${it + 300}",
-                videoUrl = "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
-                adUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpost&ciu_szs=300x250&gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&vid=short_onecue&correlator="
             )
         }
     }

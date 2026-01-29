@@ -39,7 +39,9 @@ fun SubscriptionCard(
             Spacer(modifier = Modifier.width(8.dp))
             Switch(
                 checked = isSubscribed,
-                onCheckedChange = {}
+                onCheckedChange = {
+                    onSubscriptionClick()
+                }
             )
         }
     }

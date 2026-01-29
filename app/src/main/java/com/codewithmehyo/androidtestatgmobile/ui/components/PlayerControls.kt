@@ -1,7 +1,6 @@
 package com.codewithmehyo.androidtestatgmobile.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,13 +23,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.media3.exoplayer.ExoPlayer
 import com.codewithmehyo.androidtestatgmobile.R
 import com.codewithmehyo.androidtestatgmobile.features.player.PlayerViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -38,7 +33,6 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun PlayerControls(
     modifier: Modifier = Modifier,
-    exoPlayer: ExoPlayer,
     viewModel: PlayerViewModel = koinViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -59,27 +53,8 @@ fun PlayerControls(
             /** Seek bar **/
             Slider(
                 value = state.currentPosition.toFloat(),
-                onValueChange = {
-                    viewModel.seekTo(exoPlayer, it.toLong())
-                },
-                valueRange = 0f..state.duration.coerceAtLeast(1L).toFloat(),
-                modifier = Modifier
-                    .focusable()
-                    .onKeyEvent { keyEvent ->
-                        when (keyEvent.key) {
-                            Key.DirectionLeft -> {
-                                viewModel.seekBy(exoPlayer, -10_000L) // 10 sec back
-                                true
-                            }
-
-                            Key.DirectionRight -> {
-                                viewModel.seekBy(exoPlayer, 10_000L) // 10 sec forward
-                                true
-                            }
-
-                            else -> false
-                        }
-                    }
+                onValueChange = { viewModel.seekTo(it.toLong()) },
+                valueRange = 0f..state.duration.coerceAtLeast(1L).toFloat()
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -91,7 +66,7 @@ fun PlayerControls(
             ) {
 
                 IconButton(onClick = {
-                    viewModel.seekBy(exoPlayer, -10_000L)
+                    viewModel.seekBy(-10_000L)
                 }) {
                     Icon(
                         imageVector = Icons.Default.Replay10,
@@ -101,7 +76,7 @@ fun PlayerControls(
 
                 IconButton(
                     onClick = {
-                        viewModel.togglePlay(exoPlayer)
+                        viewModel.togglePlay()
                     },
                 ) {
                     Icon(
@@ -111,7 +86,7 @@ fun PlayerControls(
                 }
 
                 IconButton(onClick = {
-                    viewModel.seekBy(exoPlayer, 10_000L)
+                    viewModel.seekBy(10_000L)
                 }) {
                     Icon(
                         imageVector = Icons.Default.Forward10,

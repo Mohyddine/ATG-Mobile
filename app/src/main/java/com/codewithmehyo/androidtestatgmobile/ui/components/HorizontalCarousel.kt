@@ -20,7 +20,7 @@ import com.codewithmehyo.androidtestatgmobile.features.home.model.MediaItemUI
 @Composable
 fun HorizontalCarousel(
     modifier: Modifier = Modifier,
-    onMediaClick: (mediaUrl: String, adTagUrl: String) -> Unit = { _, _ -> },
+    onMediaClick: () -> Unit = {},
     items: List<MediaItemUI> = emptyList()
 ) {
     LazyRow(
@@ -33,7 +33,7 @@ fun HorizontalCarousel(
                 modifier = Modifier
                     .width(200.dp)
                     .height(120.dp),
-                onClick = { onMediaClick(item.videoUrl, item.adUrl) },
+                onClick = onMediaClick,
             ) {
                 AsyncImage(
                     model = item.imageUrl,

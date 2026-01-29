@@ -9,4 +9,7 @@
     <string name="forward_10_label">Forward 10</string>
     <string name="replay_10_label">Replay 10</string>
     <string name="play_pause_label">play/pause</string>
+    <string name="exit_app">Exit App</string>
+    <string name="pro_user">Pro User</string>
+    <string name="free_user">Free User</string>
 </resources>

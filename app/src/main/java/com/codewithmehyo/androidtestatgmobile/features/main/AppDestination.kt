@@ -9,5 +9,8 @@ sealed interface AppDestination {
     data object Home : AppDestination
 
     @Serializable
-    data class Player(val mediaUrl: String, val adTagUrl: String) : AppDestination
+    data object Player : AppDestination
+
+    @Serializable
+    data object Profile : AppDestination
 }

@@ -20,7 +20,7 @@ import com.codewithmehyo.androidtestatgmobile.features.home.model.MediaItemUI
 @Composable
 fun VerticalCarousel(
     modifier: Modifier = Modifier,
-    onMediaClick: (mediaUrl: String, adTagUrl: String) -> Unit = { _, _ -> },
+    onMediaClick: () -> Unit = {},
     items: List<MediaItemUI>
 ) {
     LazyRow(
@@ -33,7 +33,7 @@ fun VerticalCarousel(
                 modifier = Modifier
                     .width(120.dp)
                     .height(200.dp),
-                onClick = { onMediaClick(item.videoUrl, item.adUrl) },
+                onClick = onMediaClick,
             ) {
                 AsyncImage(
                     model = item.imageUrl,
